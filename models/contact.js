@@ -8,7 +8,7 @@ const contactSchema = Schema(
     phone: { type: String },
     favorite: { type: Boolean, default: false },
   },
-  { versionKey: false, timestamps: true }
+  { versionKey: false }
 );
 
 const joiSchema = Joi.object({
