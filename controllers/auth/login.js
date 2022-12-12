@@ -9,9 +9,13 @@ const login = async (req, res) => {
   const user = await User.findOne({ email });
 
   const passCompare = bcrypt.compareSync(password, user.password);
-  if (!user || !passCompare) {
-    throw new Unauthorized("Email or password is wrong");
+  if (!user || !passCompare || !user.verify) {
+    throw new Unauthorized("Email or password is wrong or email not verified");
   }
+  // if (user || passCompare || !user.verify) {
+  //   throw new Unauthorized("Email not verified");
+  // }
+
   const payload = {
     id: user._id,
   };
